@@ -41,6 +41,7 @@ const getImages = (zenodoid,url,obj) => {
        const sortregex = /^(\d+)([rv])?|(\d+)([rv])?.(?:jpg|jpeg|png)$/i;
        const resa = sortregex.exec(a.key);
        const resb = sortregex.exec(b.key);
+       if(!resa||!resb) return 0;
        const inta = parseInt(resa[1]);
        const intb = parseInt(resb[1]);
        if(inta < intb)
