@@ -95,6 +95,9 @@ const makeManifest = async (manifest, canvases, services) => {
         //service['@id'] = service.id;
         //delete service.id;
         canvas.images[0].resource.service = service;
+        canvas.thumbnail = {};
+        canvas.thumbnail['@id'] = service.id + '/full/,50/0/default.jpg';
+        canvas.thumbnail['@type'] = 'dctypes:Image';
         manifest.sequences[0].canvases.push(canvas);
     }
     const file = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
@@ -127,9 +130,10 @@ const go = async (e) => {
 const init = () => {
     const input = document.querySelector('input');
     input.addEventListener('keypress',(e) => {
-        if(e.key === 'Enter')
+        if(e.key === 'Enter') {
             e.preventDefault();
             go(e);
+        }
     });
 };
 
